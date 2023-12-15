@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Online-Reservation-System/login</title>
+</head>
+
+<body bgcolor="#dfc8a2">
+	<div align="center">
+
+		<img src="./transport.jpg" width="1000px" height="400px" alt="Login">
+
+		<h1>Welcome to the login Page👀</h1>
+		<div th:if="${message}" style="position: absolute; top: 62%; left: 45%">
+			<p th:text="${message}" style="color: red;"></p>
+		</div>
+
+		<form th:action="@{/saveLogin}" method='POST'>
+			Login ID : <input type="text" placeholder="enter your id" name="userID" required />
+			<br><br>
+			Password : <input type="password" placeholder="enter your🗝️" name="userPassword" required />
+
+			<br><br><br>
+			<button type="submit">Submit</button>
+		</form>
+		<h3>
+				<a th:href="@{/newRegistration}">New User</a>
+				&nbsp;&nbsp;&nbsp;
+				<a th:href="@{/end}">Exit</a>
+			</h3>
+	</div>
+</body>
+
+</html>

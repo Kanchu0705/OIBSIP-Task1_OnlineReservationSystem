@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Online-Reservation-System/validatePNR</title>
+</head>
+
+<body bgcolor="beige">
+    <h1 style="text-align: center; color: darkblue; position: absolute; top: 10%; left: 30%;"> Provide Your PNR To
+        Cancel Reservation</h1>
+
+    <form th:action="@{/showReservationDetails}" method="POST">
+        <div th:if="${invalidPnr}" style="position: absolute; top: 28%; left: 38.5%; color: red;">
+            <p>Invalid PNR/data deleted on cancellation</p>
+        </div>
+
+        <h2 style="text-align: center; position: absolute; top: 30%; left: 37%;">
+            Enter PNR : <input type="number" name="pnr" placeholder="5 digit captured number" required>
+        </h2>
+
+        <br><br><br><br>
+
+        <button type="submit"
+            style="font-size: 20px; position: absolute; top: 40%; left: 45%; text-decoration: none; padding: 10px; background-color: green; color: white; border-radius: 5px;">Get
+            details</button>
+    </form>
+   
+</body>
+
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Online-Reservation-System/registrationn/</title>
+	<style>
+		body {
+			background-color: #DAF7A6;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			height: 100vh;
+			margin: 0;
+		}
+
+		.container {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			text-align: left;
+		}
+
+		#registrationImage {
+			width: 900px;
+			height: 500px;
+			margin-right: 20px;
+			/* Adjust the margin as needed */
+		}
+
+		#registrationForm {
+			text-align: left;
+			display: inline-block;
+			width: 500px;
+
+		}
+	</style>
+</head>
+
+<body>
+
+	<div class="container">
+		<img src="register.png" id="registrationImage" alt="Registration" />
+		<div id="registrationForm">
+			<h1 style="text-align: center;">Welcome to the user registration module💃🕺</h1>
+
+			<form th:action="@{/saveRegistration}" method="POST">
+				Full Name : <input type="text" placeholder="Xxx Xxx" name="name" required /><br><br>
+				Date of Birth : <input type="date" placeholder="DOB" name="DOB" required /><br><br>
+				Ph number : <input type="text" placeholder="10 digits only" name="phoneNumber" required /><br><br>
+				Email : <input type="email" placeholder="abc@gmail.com" name="email" required /><br><br>
+				Address : <input type="text" placeholder="enter full address" name="address" required /><br><br>
+				<br><br><br>
+				<button type="submit">submit</button>
+			</form>
+
+		</div>
+	</div>
+
+</body>
+
+</html>

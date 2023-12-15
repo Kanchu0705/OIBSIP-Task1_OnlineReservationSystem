@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Online-Reservation-System/registration</title>
+    <style>
+        body {
+            background-color: #B3E5FC;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: left;
+            background-color: #FFEB3B;
+        }
+
+        #reservationImage {
+            width: 1000px;
+            height: 500px;
+            margin-right: 40px;
+        }
+
+        #reservationForm {
+            text-align: left;
+            display: inline-block;
+            width: 480px;
+            background-color: #9CCC65;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        form {
+            margin-top: 20px;
+            background-color: #9CCC65;
+        }
+
+        input,
+        select {
+            width: 50%;
+            box-sizing: border-box;
+            margin-bottom: 5px;
+            padding: 2px;
+        }
+
+        .submit-container {
+            text-align: center;
+        }
+
+        button {
+            padding: 5px;
+            text-align: center;
+        }
+
+        /* Style for error messages */
+        .error-message {
+            color: red;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <img src="./reservation.jpg/" id="reservationImage" alt="Reservation" />
+        <div id="reservationForm">
+            <h1>Book your reservations✈️</h1>
+            <div>
+                <form th:action="@{/saveReservation}" method="POST" th:object="${userReservation}">
+                    <p>
+                        <h3><b>Reservation form :</b></h3>
+                    </p>
+                    Full Name : <input type="text" placeholder="Xxx Xxx" name="name" required /><br>
+                    DOB : <input type="date" placeholder="Enter your dob" name="DOB" required /><br>
+                    Ph number : <input type="text" placeholder="10 digits only" name="phoneNumber" required /><br>
+                    Email : <input type="email" placeholder="abc@gmail.com" name="email" required /><br>
+                    Address : <input type="text" placeholder="Enter full address" name="address" required /><br>
+                    Class type :
+                    <select name="classType">
+                        <option>--Select--</option>
+                        <option>A-class</option>
+                        <option>B-class</option>
+                        <option>A-Sleeper</option>
+                        <option>B-Sleeper</option>
+                        <option>AC-A</option>
+                        <option>AC-B</option>
+                        <option>AC-A(Sleeper)</option>
+                        <option>AC-B(Sleeper)</option>
+                        <option>General</option>
+                    </select><br>
+                    From Destination: <input type="text" placeholder="Enter from destination" name="fromDestination"
+                        required oninput="getTrainDetails(this)" /><br>
+                    To Destination : <input type="text" placeholder="Enter to destination" name="toDestination"
+                        required oninput="getTrainDetails(this)" /><br>
+
+                    <!-- Error message container -->
+                    <span class="error-message" id="errorMessage"></span>
+
+                    Train Name : <input type="text" placeholder="Enter train name" id="trainName" name="trainName"
+                        readonly required /><br>
+                    Train Number : <input type="text" placeholder="Enter train number" id="trainNumber" name="trainNumber"
+                        readonly required /><br><br><br>
+                    <div class="submit-container">
+                        <button type="submit">submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function getTrainDetails(input) {
+            var fromDestination = input.form.elements.fromDestination.value;
+            var toDestination = input.form.elements.toDestination.value;
+ if (fromDestination.trim() !== "" && toDestination.trim() !== "") {
+            var trainDetailsMap = {
+                "lakdikapool to nampally": "Metro-Express 1,12340",
+                "begumpet to ameerpet": "Metro-Express 2,12341",
+                "nampally to assembly": "Metro-Express 3,12342",
+                "assembly to secunderabad": "Metro-Express 4,12343",
+                "secunderabad to khairtabad": "Metro-Express 5,12344",
+                "khairtabad to punjagutta": "Metro-Express 6,12345",
+                "punjagutta to rasoolpura": "Metro-Express 7,12346",
+                "rasoolpura to kukatpally": "Metro-Express 8,12347",
+                "kukatpally to nagole": "Metro-Express 9,12348",
+                "nagole to kondapur": "Metro-Express 10,12349"
+            };
+
+            var key = (fromDestination + " to " + toDestination).toLowerCase();
+        var trainDetails = trainDetailsMap[key];
+
+        console.log("From Destination:", fromDestination);
+        console.log("To Destination:", toDestination);
+        console.log("Train Details:", trainDetails);
+
+        var errorMessageElement = document.getElementById('errorMessage');
+        var trainNameElement = document.getElementById('trainName');
+        var trainNumberElement = document.getElementById('trainNumber');
+
+       if (trainDetails) {
+            var detailsArray = trainDetails.split(",");
+            trainNameElement.value = detailsArray[0].trim();
+            trainNumberElement.value = detailsArray[1].trim();
+            errorMessageElement.textContent = ""; // Clear any previous error message
+        } else {
+            // Display an error message on the webpage
+            errorMessageElement.textContent = "Train details not found for the selected destinations.";
+            // Clear the trainName and trainNumber fields
+            trainNameElement.value = "";
+            trainNumberElement.value = "";
+        }
+    } else {
+        // Clear the error message and fields if "from" or "to" destinations are not entered
+        document.getElementById('errorMessage').textContent = "";
+        document.getElementById('trainName').value = "";
+        document.getElementById('trainNumber').value = "";
+    }
+}
+    </script>
+
+</body>
+
+</html>

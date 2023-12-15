@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Online-Reservation-System/cancellationUnsuccessful</title>
+</head>
+
+<body bgcolor="beige">
+    <h1 style="text-align: center;font-size: 50px; color: black; position: absolute; top: 10%; left: 33%;">Your Reservation Status
+    </h1>
+
+    <div th:unless="${cancellationSuccessful}" style="position: absolute; top: 30%; left: 42%">
+        <h2 style="text-align: center; color: red;">Cancellation unsuccessful😓</h2>
+        <h3 style="text-align: center;">
+			<a th:href="@{/home}" style="padding: 4px; margin: 3px; background-color: cornflowerblue; color: black;">Go home</a>
+		</h3>
+    </div>
+
+</body>
+
+</html>

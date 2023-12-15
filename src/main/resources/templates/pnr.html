@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Online-Reservation-System/pnrNumber</title>
+
+	<style>
+		body {
+			margin: 0;
+			padding: 0;
+			background-color: #3399ff;
+			text-align: center;
+		}
+
+		.container {
+			position: relative;
+			text-align: left;
+			display: inline-block;
+		}
+
+		.image-overlay {
+			position: absolute;
+			top: 40%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			color: black;
+			font-size: 24px;
+			text-align: center;
+		}
+
+		.image-overlay h1 {
+			margin: 0;
+		}
+	</style>
+</head>
+
+<body>
+
+	<div class="container">
+		<img src="./pnr.jpg" width="1500px" height="850px" alt="Your PNR">
+		<div class="image-overlay">
+			<!--<div th:if="${pnr!=null}">-->
+			<h1 th:text="${pnr.pnr}"></h1>
+            <h3>🌺Capture this number for future reference🌺</h3>
+            <h3>If you'd like to check your train details or cancel your ticket !!</h3>
+            <a th:href="@{/home}" style="text-decoration: none; padding: 10px; background-color: #4CAF50; color: white; border-radius: 5px;">🏠Go to Home</a>
+        </div>
+		</div>
+
+</body>
+
+</html>

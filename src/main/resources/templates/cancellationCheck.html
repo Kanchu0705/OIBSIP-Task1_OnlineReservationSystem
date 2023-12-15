@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Online-Reservation-System/cancellationCheck</title>
+</head>
+
+<body bgcolor="beige">
+	<form th:action="@{/cancel}" method="POST">
+
+		<h1 style="text-align: center; color: darkblue; position: absolute; top: 10%; left: 30%;">Do you want to cancel
+			your reservation ??
+		</h1>
+<input type="hidden" name="confirmCancellation" value="false" />
+		<button type="submit" style="font-size: 20px; position: absolute; top: 35%; left: 40%; text-decoration: none;
+            padding: 5px; background-color: green; 
+            color: white; border-radius: 5px;">Yes, cancel</button>
+		<button type="submit" style="font-size: 20px; position: absolute; top: 35%; left: 50%; text-decoration: none;
+            padding: 5px; background-color: red; 
+            color: white; border-radius: 5px;">No, do not cancel</button>
+		<div th:if="${cancellationSuccessful}" style="position: absolute; top: 30%; left: 35%">
+			<h2 style="text-align: center; color: green;">Reservation successfully CANCELLED !!</h2>
+			<h3 style="text-align: center;"><a th:href="@{/home}">Go home</a></h3>
+		</div>
